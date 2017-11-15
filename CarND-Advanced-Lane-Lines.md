@@ -60,7 +60,12 @@ To demonstrate this step, I will describe how I apply the distortion correction 
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image. 
 
-I used a combination of color and gradient thresholds to generate a binary image. Here's an example of my output for this step. 
+I used a combination of two color thresholds to generate a binary image. The hint was given by the reviewer. I now use 
+
+* The b channel from Lab with thresholds between 155 and 200 (for yellow lines).
+* The L channel from LUV with thresholds between 225 and 255 (for white lines).
+
+Here's an example of my output for this step. 
 
 ![alt text][image3]
 
