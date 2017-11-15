@@ -101,15 +101,15 @@ The function takes the bottom half of a binarized and warped lane image and comp
 
 The function uses a sliding window and iteratively moves up the image finding the lane lines.
 
-The a second order polynomial is used to fit the found lane line pixels.
+Then a second order polynomial is used to fit the found lane line pixels.
 
 #####  Deviations from standard function presented in the course
 
-In contrast to the examples already presented in the course I applied a mask making use of a prioiri knowledge where the lane must be (while driving in the lane). I multiply this places with a value > 1. Note: The processing chain needs to be extended  for tracking this area when changing the lane. I did not do it because no lane change in example data.
+In contrast to the examples already presented in the course I applied a mask making use of a prioiri knowledge where the lane must be (while driving in the lane). I multiply this places with a value > 1. Note: The processing chain needs to be extended  for tracking this area when changing the lane. I did not do it because no lane change present in the sample data.
 
 Also I do not run the whole code with initialization (histogram) all the time. If a have a valid lane I only search in the area around the last detected lane.
 
-I perform a sanity check: Lane curve radius does not differ more than factor 2 from left to right and lane width must be less than 3.9m.
+I perform a sanity check: Lane curve radius must not differ more than factor 2 from left to right and lane width must be less than 3.9m to prohibit re-initialization.
 
 ![alt text][image5]
 
@@ -155,6 +155,6 @@ Tracking is taken care of in my pipeline with the reinitialization step. Alterna
 
 Also the pipeline is not very robust against shadows and curbstones guardrails etc. Additionally use cases where more than two lines (an unknown number of lines) need to be detected is difficult.
 
-This issue could be solved by created separate line detectors with moving a prioiri knowledge.
+This issue could be solved by introducing separate line detectors with moving a prioiri knowledge.
 
-A real world problem could also be: In construction zones there are white and yellow lines present and only the yellow ones are valid. A detector to take color into account would definitely be necessary to really develop a self-driving car. Also there are situation where no line at all has a validity and one need  a totally different strategy to control the car.
+A real world problem could also be: In construction zones there are white and yellow lines present and only the yellow ones are valid. A detector to take color into account would definitely be necessary to really develop a self-driving car. Also there are situations where no line at all has a validity and one would need a totally different strategy to control the car.
